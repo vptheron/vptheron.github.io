@@ -1,4 +1,5 @@
 # General Jekyll Config
+markdown: kramdown
 lsi: true
 exclude: [LICENSE, CNAME, README.md, .gitignore]
 permalink: pretty
