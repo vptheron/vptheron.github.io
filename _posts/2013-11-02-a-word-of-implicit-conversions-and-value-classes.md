@@ -9,7 +9,7 @@ tags:
 
 Implicit conversion is a very powerful feature provided by the Scala language. Its most common use case is to add capabilities to a class that is outside of the developer's control (e.g. a class provided by a dependency or a third party library). Let's look at a very basic example:
 
-{% highlight scala linenos %}
+{% highlight scala %}
 // This is the class provided by the third party library, no way to change this code.
 class Person(val firstName: String, val lastName: String)
 
@@ -30,7 +30,7 @@ Most of the work happens at compile time: the compiler realizes that `fullName` 
 
 It turns out Scala 2.10 introduces a new syntax that makes it even easier to define implicit conversions. Behold **implicit classes**:
 
-{% highlight scala lineos %}
+{% highlight scala %}
 // Still the class provided by the third party library
 class Person(val firstName: String, val lastName: String)
 
@@ -47,7 +47,7 @@ Note that `personToRichPerson` is gone. By using the `implicit` keyword when def
 
 Let's talk about the cost of implicit conversions. The compiler has to look up the appropriate conversion, this takes time, but this look-up is done at compile time so not much of an issue. However, at runtime, the program still needs to instantiate an instance of `RichPerson` *each time* you want to access the `fullName` field (or any other field defined in your rich wrapper):
 
-{% highlight scala linenos %}
+{% highlight scala %}
 // What really happens when you invoke fullName on Person
 val p = new Person("Bob", "Saget")
 println(new RichPerson(p).fullName)
@@ -55,7 +55,7 @@ println(new RichPerson(p).fullName)
 
 For most applications, this is not a problem, and frankly it is probably not worth looking for a workaround right? What if this workaround was incredibly simple and required no efforts? Enter **value classes**:
 
-{% highlight scala linenos %}
+{% highlight scala %}
 // Still the class provided by the third party library
 class Person(val firstName: String, val lastName: String)
 

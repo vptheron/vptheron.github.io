@@ -1,23 +1,9 @@
-# General Jekyll Config
+# Site settings
+title: Vincent Theron's blog
+author: Vincent Theron
+email: vptheron@gmail.com
+
+# Build settings
 markdown: kramdown
-lsi: true
-exclude: [LICENSE, CNAME, README.md, .gitignore]
 permalink: pretty
-
-# Theme customization - please change from the defaults!
-theme:
-  # Color for top bar, links, etc
-  highlight_color: '#3498db'
-
-  # Profile links on the left sidebar, leave blank to ignore
-  social:
-    github: vptheron
-    stackoverflow: 2250148
-    twitter: vptheron
-    linkedin: vptheron
-
-  # "Hi, I'm _______"
-  name: Vincent Theron
-  title: Chez Vincent
-  email: test@example.com
-  tagline: "Where I write about things and stuff"
+paginate: 8
