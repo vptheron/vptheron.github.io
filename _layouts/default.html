@@ -5,14 +5,14 @@
 
     <body>
         
-        <div class="container"> 
+        <div class="container" id="container"> 
             
             <div class="row">
                 <div class="col-sm-8"> 
                     {{ content }}
                 </div>
 
-                <div class="col-sm-3 col-sm-offset-1">
+                <div class="col-sm-3 col-sm-offset-1" id="sidebar">
                     {% include sidebar.html %}
                 </div>       
                  
@@ -20,7 +20,9 @@
 
             <hr/>
 
-            {% include footer.html %}
+            <div id="footer">
+              {% include footer.html %}
+            </div>
 
         </div>
 

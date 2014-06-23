@@ -9,7 +9,8 @@ tags:
 
 Implicit conversion is a very powerful feature provided by the Scala language. Its most common use case is to add capabilities to a class that is outside of the developer's control (e.g. a class provided by a dependency or a third party library). Let's look at a very basic example:
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 // This is the class provided by the third party library, no way to change this code.
 class Person(val firstName: String, val lastName: String)
 
@@ -25,12 +26,14 @@ implicit def personToRichPerson(person: Person): RichPerson = new RichPerson(per
 val p = new Person("Bob", "Saget")
 println(p.fullName)
 {% endhighlight %}
+</div>
 
 Most of the work happens at compile time: the compiler realizes that `fullName` does not exist in `Person`, it then searches the scope for an implicit conversion from `Person` to *[something that has a fullName field defined]*. If no matching implicit conversion is available in scope you get a compilation error.
 
 It turns out Scala 2.10 introduces a new syntax that makes it even easier to define implicit conversions. Behold **implicit classes**:
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 // Still the class provided by the third party library
 class Person(val firstName: String, val lastName: String)
 
@@ -42,20 +45,24 @@ implicit class RichPerson(person: Person){
 val p = new Person("Bob", "Saget")
 println(p.fullName)
 {% endhighlight %}
+</div>
 
 Note that `personToRichPerson` is gone. By using the `implicit` keyword when defining our `RichPerson` wrapper we save ourselves the need to write the implicit conversion, the compiler will generate it for us.
 
 Let's talk about the cost of implicit conversions. The compiler has to look up the appropriate conversion, this takes time, but this look-up is done at compile time so not much of an issue. However, at runtime, the program still needs to instantiate an instance of `RichPerson` *each time* you want to access the `fullName` field (or any other field defined in your rich wrapper):
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 // What really happens when you invoke fullName on Person
 val p = new Person("Bob", "Saget")
 println(new RichPerson(p).fullName)
 {% endhighlight %}
+</div>
 
 For most applications, this is not a problem, and frankly it is probably not worth looking for a workaround right? What if this workaround was incredibly simple and required no efforts? Enter **value classes**:
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 // Still the class provided by the third party library
 class Person(val firstName: String, val lastName: String)
 
@@ -67,6 +74,7 @@ implicit class RichPerson(val person: Person) extends AnyVal {
 val p = new Person("Bob", "Saget")
 println(p.fullName)
 {% endhighlight %}
+</div>
 
 OK, so a few things changed here. The most important one is that now `RichPerson` extends `AnyVal` which turns it into a *value class* - all the other changes are a consequence of this new status since value classes come with a very strict set of rules to follow, we will go through them in a minute. First, what does it mean that `RichPerson` is both an implicit class and a value class? Basically, there is no need to create a `RichPerson` instance when calling `fullName` on a `Person`! Here is how it works: the compiler silently creates a companion object for our value class `RichPerson` with a method `fullName(person:Person)`[(1)](#truth_about_method_name) and each time we call `fullName` on a `Person` instance the compiler re-routes this call to use the static method defined on the companion object and pass the `Person` instance as single argument.
 

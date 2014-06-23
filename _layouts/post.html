@@ -4,14 +4,15 @@ layout: default
 
 <article>
     <header>
-        <h2>{{ page.title }}</h2>
+        <h1>{{ page.title }}</h1>
         <p class="post-meta">{{ page.date | date: "%B %d, %Y" }}</p>
-        <p class="post-meta">Tags: 
+        <!--<p class="post-meta">Tags: 
         {% for tag in page.tags %}
             <span class="label label-info">{{ tag }}</span>
         {% endfor %}
-        </p>
+        </p>-->
     </header>
+    
     <hr/>
     
     {{ content }}

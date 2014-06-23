@@ -1,24 +1,13 @@
 body {
-  background-color: #d9edf7;
+  background-color: #f5f5f5;
 }
 
-.container {
-  margin-bottom: 15px;
+#container {
   margin-top: 15px;
+  margin-bottom: 15px;
   background-color: #fff;
-  border-radius: 5px;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-.post-meta {
-  color: #aaa;
+  border: 1px solid #aaa;
+  border-radius: 4px;
 }
 
 #footer {
@@ -26,15 +15,36 @@ a:visited {
   color: #aaa;
 }
 
-.panel-heading {
-  text-align: center;
+h2 a { color: #333; }
+
+#sidebar .panel-heading { 
+  text-align: center; 
+  background-color: #f5f5f5;
 }
 
-.highlight .lineno { color: #ccc; display:inline-block; padding: 0 5px; border-right:1px solid #ccc; }
+#sidebar .panel-body { padding: 10px; }
+
+.post-meta { color: #aaa; }
+
+a:link { text-decoration: none; }
+
+a:visited { text-decoration: none; }
+
+/*.highlight .lineno { color: #ccc; display:inline-block; padding: 0 5px; border-right:1px solid #ccc; }
 .highlight pre { overflow-x: auto; }
-.highlight pre code { display: block; white-space: pre; word-wrap: normal; }
+.highlight pre code { display: block; white-space: pre; word-wrap: normal; }*/
 
+div.scrollable-code {
+  overflow: auto; 
+  margin: 0 0 11px; 
+}
 
-.highlighttable .linenodiv pre { color: #ccc; }
-.highlighttable pre { margin: 0 }
-.scrollable-code {overflow: auto; margin: 0 0 11px; }
+table.highlighttable { min-width: 100% }
+
+table.highlighttable pre { margin: 0 }
+
+table.highlighttable .linenodiv pre { 
+  color: #ccc; 
+  word-break: normal; 
+}
+

@@ -18,7 +18,8 @@ The purpose of this post is to describe the strategy I have been using for quite
 
 Every hero needs an intriguing backstory, here is ours: we are working on a web application implementing a REST API, one of our endpoints is used to create new user accounts.
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 class UserController(userService: UserService) {
 
   def createUserAccount(email: String, password: String): HttpResult = {
@@ -27,24 +28,29 @@ class UserController(userService: UserService) {
   }
 }
 {% endhighlight %}
+</div>
 
 That's quite a leazy controller: it just calls some service implementing our domain logic to create a new user account, receives *some* result, turns it into an instance of `HttpResult` (a type provided by our imaginary web framework) and returns it to the API user. The only missing part is the type of `domainResult`, the result of a call to `UserService.createUserAccount`.
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 trait UserService {
   def createUserAccount(email: String, password: String): ??? // see how there is no type yet?
 }
 {% endhighlight %}
+</div>
 
 What is the best type to return from our domain object? Let's begin our journey toward the ideal return type...
 
 ## In a brave new world...
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 trait UserService {
   def createUserAccount(email: String, password: String): UserAccount
 }
 {% endhighlight %}
+</div>
 
 Boom! Done. Next. 
 
@@ -54,7 +60,8 @@ OK, this one was just a jest. We all know this `UserService` only exists in a pe
 
 Well, actually there is: 
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 trait UserService {
   def createUserAccount(email: String, password: String): Try[UserAccount]
 }
@@ -68,6 +75,7 @@ class UserController(userService: UserService) {
     }
 }
 {% endhighlight %}
+</div>
 
 By returning a `Try[UserAccount]` our `UserService` states that it will *try* to return a `UserAccount` but something may go wrong and every calling object should be ready for it. The `UserController` is a diligent caller and it properly handles both cases. Not too bad, let's make it slightly better.
 
@@ -75,7 +83,8 @@ By returning a `Try[UserAccount]` our `UserService` states that it will *try* to
 
 Asynchronous, non-blocking, reactive. These are the new buzz words every cool kid has on his lips nowadays. Our `UserService` should surf this new wave of coolness and return an instance of `Future`!
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 trait UserService {
   def createUserAccount(email: String, password: String): Future[UserAccount]
 }
@@ -90,6 +99,7 @@ class UserController(userService: UserService) {
     }
 }
 {% endhighlight %}
+</div>
 
 For our current purpose of managing failure, a `Future` works pretty much like a `Try`: it either succeeds and wraps the desired result (here a `UserAccount`) or fails and contains an exception. The difference is that the `Future` will complete at some point in the *future* as opposed to the `Try` we previously used. Notice that I cheated a little bit and my controller is now returning a `Future[HttpResult]`, I assume my imaginary web framework knows how to handle those and save myself a (disgraceful) call to `Await.result`.
 
@@ -99,7 +109,8 @@ Even if our `UserService` is not truly asynchronous it is probably a good idea t
 
 It seems a bit unfair to always return a code 500 when our `UserService` fails to create a new account. After all, it may be failing due to bad parameters given by the API user, we should blame him! We could throw a `UserCreationException` containing an explanatory message (`"Invalid email."`, `"Email already exists."`, etc) but it's not very convenient to handle in our `UserController` if we wish to know what went wrong exactly. A better way is to return a different type of exception for each error:
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 trait UserService {
   def createUserAccount(email: String, password: String): Future[UserAccount]
 }
@@ -122,6 +133,7 @@ class UserController(userService: UserService) {
     
 }
 {% endhighlight %}
+</div>
 
 Now *you* deal with your buggy code, API user!
 
@@ -137,7 +149,8 @@ OK, time to take a step back and try something different. First, we can divide p
 
 Having established these two different kinds of errors, we can design a return type to usefully report them. Instead of just using a `Future`, we will use an instance of `Either` *wrapped in a `Future`*.
 
-{% highlight scala %}
+<div class="scrollable-code">
+{% highlight scala linenos=table %}
 trait UserService {
   def createUserAccount(email: String, password: String): Future[Either[UserCreationError, UserAccount]]
 }
@@ -160,6 +173,7 @@ class UserController(userService: UserService) {
     }
 }
 {% endhighlight %}
+</div>
 
 Here is what happens:
 
