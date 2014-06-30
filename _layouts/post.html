@@ -2,6 +2,7 @@
 layout: default
 ---
 
+<a name="top">&nbsp;</a>
 <article>
     <header>
         <h1>{{ page.title }}</h1>
@@ -17,10 +18,16 @@ layout: default
     
     {{ content }}
 
+    <div class="text-center">
+        <a href="#top"><i class="fa fa-arrow-up fa-2x"></i></a>
+        <a href="/"><i class="fa fa-home fa-2x"></i></a>
+    </div>
+
     <hr/>
-    
+
     <p>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </p>
+
 </article>
