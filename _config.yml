@@ -1,9 +1,4 @@
-# Site settings
-title: Vincent Theron's blog
-author: Vincent Theron
-email: vptheron@gmail.com
-
-# Build settings
+# General Jekyll Config
 markdown: kramdown
 permalink: pretty
-paginate: 8
+highlighter: pygments
