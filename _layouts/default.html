@@ -15,24 +15,28 @@
 
   <!--link rel="shortcut icon" href="/assets/images/favicon.png"-->
   
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,800" >
-  <link rel="stylesheet" href="/assets/css/all.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,800">
+  <link rel="stylesheet" href="/assets/css/mystyle.css">
+  <link rel="stylesheet" href="/assets/css/syntax.css">
 </head>
 
 <body>
   <div class="container">
-    <div class="four columns sidebar">
-      {% include sidebar.html %}
-    </div>
+    <div class="row">
+      <div class="col-md-3 sidebar">
+        {% include sidebar.html %}
+      </div>
 
-    <div class="eleven columns content">
-      {{ content }}
-
-      <footer>
-        <p>Copyright © 2015 - Vincent Theron - Powered by <a href="http://jekyllrb.com/">Jekyll</a>.</p>
-      </footer>
+      <div class="col-md-9 content">
+        {{ content }}
+    
+      </div>
     </div>
+    <footer>
+      <p>Copyright © 2015 - Vincent Theron - Powered by <a href="http://jekyllrb.com/">Jekyll</a>.</p>
+    </footer>
   </div>
 
 </body>
