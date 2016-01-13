@@ -2,27 +2,12 @@
 layout: default
 ---
 
-<h1 class="post-title">{{ page.title }}</h1>
-
-<p class="post-meta">
-  {{ page.date | date: "%B %d, %Y" }}
-  {% if page.tags != empty %}
-     - Tags: 
-    {% for tag in page.tags %}
-      <span class="post-tag">{{ tag }}</span>
-    {% endfor %}   
-  {% endif %}
-  <a href="/">
-    <i class="home fa fa-home"></i>
-  </a>
-</p>
-
-<div class="post-content">
+<article>
+  <header>
+    <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    <h2>{{page.title}}</h2>
+  </header>
+  
   {{ content }}
-</div>
-
-<div>
-  <a href="https://twitter.com/share?count=none" class="twitter-share-button" data-size="large">Tweet</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-</div>
-
+          
+</article>

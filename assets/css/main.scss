@@ -1,0 +1,83 @@
+---
+---
+
+@import 'syntax2';
+
+$link-color: #488A99;
+$link-color-hover: #1B4B5A;
+$meta-color: #B4B4B4;
+$other-color: #DBAE58;
+
+a {
+	text-decoration: none;
+	color: $link-color;
+}
+a:hover {
+	text-decoration: none;
+	color: $link-color-hover;
+}
+
+.container {
+	max-width: 800px;
+}
+
+nav.navbar h1 {
+	margin: 0;
+}
+
+nav.navbar h1 a {
+	margin: 0;
+	color: $link-color-hover;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: $link-color;
+}
+.navbar-default .navbar-nav>li>a:hover {
+	color: $link-color-hover;
+}
+
+nav.navbar {
+	margin-top: 10px;
+	padding-top: 10px;
+	background-color: #fff;
+	border-color: $other-color;
+	border-style: none none solid none;
+	border-radius: 0;
+	padding-bottom: 10px;	
+}
+
+div#content>h2 {
+	text-align: center;
+}
+
+ul.posts {
+	list-style: none;
+	padding: 0;
+}
+
+ul.posts li {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+article header time {
+	color: $meta-color;
+}
+
+article header h2 {
+	margin-top: 0;
+}
+
+footer {
+	margin-top: 20px;
+	padding-top: 10px;
+	border-top: 1px solid $other-color;
+	color: $meta-color;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+footer span.credit {
+  float: right;
+}

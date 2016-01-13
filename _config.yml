@@ -1,4 +1,17 @@
 # General Jekyll Config
-markdown: kramdown
-permalink: /:year/:month/:title
-highlighter: pygments
+title: Vincent Theron
+author: Vincent Theron
+description: Vincent's Blog
+header: Vincent's Blog
+
+gravatar: 882e5d8f1f82016aa1d275caf69804f6.png 
+github: vptheron
+twitter: vptheron
+stackoverflow: 2250148/vptheron
+linkedin: vptheron
+
+permalink: /:title
+
+sass:
+  sass_dir: assets/css
+  style: :compressed
