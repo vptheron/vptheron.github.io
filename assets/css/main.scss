@@ -7,6 +7,7 @@ $link-color: #488A99;
 $link-color-hover: #1B4B5A;
 $meta-color: #B4B4B4;
 $other-color: #DBAE58;
+$normal: #333;
 
 a {
 	text-decoration: none;
@@ -27,7 +28,7 @@ nav.navbar h1 {
 
 nav.navbar h1 a {
 	margin: 0;
-	color: $link-color-hover;
+	color: $normal;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -69,6 +70,17 @@ article header h2 {
 	margin-top: 0;
 }
 
+article header h2 a {
+	color: $normal;
+}
+article header h2 a:hover {
+	color: $normal;
+}
+
+p {
+	text-align: justify;
+}
+
 footer {
 	margin-top: 20px;
 	padding-top: 10px;
@@ -80,4 +92,8 @@ footer {
 
 footer span.credit {
   float: right;
+}
+
+img#avatar {
+	margin-bottom: 15px;
 }
