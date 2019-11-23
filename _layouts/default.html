@@ -1,43 +1,16 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Vincent Theron" />
-  <meta name="description" content="Vincent Theron's blog" />
-  
-  <title>@vptheron - {{ page.title }}</title>
-  
-  <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}" />
+<html lang="en">
 
-  <!--link rel="shortcut icon" href="/assets/images/favicon.png"-->
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,800">
-  <link rel="stylesheet" href="/assets/css/mystyle.css">
-  <link rel="stylesheet" href="/assets/css/syntax.css">
-</head>
+  {% include head.html %}
 
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3 sidebar">
-        {% include sidebar.html %}
-      </div>
+  <body>
 
-      <div class="col-md-9 content">
-        {{ content }}
-    
-      </div>
-    </div>
-    <footer>
-      <p>Copyright © 2015 - Vincent Theron - Powered by <a href="http://jekyllrb.com/">Jekyll</a>.</p>
-    </footer>
-  </div>
+    {% include navigation.html %}
 
-</body>
+    <main>
+      {{ content }}
+    </main>
+
+    {% include footer.html %}
+  </body>
 </html>

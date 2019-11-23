@@ -2,27 +2,25 @@
 layout: default
 ---
 
-<h1 class="post-title">{{ page.title }}</h1>
+<div class="post">
+  <div class="post-info">
+    {% if page.date %}
+      <time datetime="{{ page.date }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    {% endif %}
+  </div>
 
-<p class="post-meta">
-  {{ page.date | date: "%B %d, %Y" }}
-  {% if page.tags != empty %}
-     - Tags: 
-    {% for tag in page.tags %}
-      <span class="post-tag">{{ tag }}</span>
-    {% endfor %}   
-  {% endif %}
-  <a href="/">
-    <i class="home fa fa-home"></i>
-  </a>
-</p>
+  <h1 class="post-title">{{ page.title }}</h1>
 
-<div class="post-content">
   {{ content }}
 </div>
 
-<div>
-  <a href="https://twitter.com/share?count=none" class="twitter-share-button" data-size="large">Tweet</a>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-</div>
+<div class="pagination">
+  {% if page.next.url %}
+    <a href="{{ page.next.url | prepend: site.baseurl }}" class="left arrow">&#8592;</a>
+  {% endif %}
+  {% if page.previous.url %}
+    <a href="{{ page.previous.url | prepend: site.baseurl }}" class="right arrow">&#8594;</a>
+  {% endif %}
 
+  <a href="#" class="top">Top</a>
+</div>
